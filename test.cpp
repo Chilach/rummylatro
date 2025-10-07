@@ -71,7 +71,7 @@ private:
 public:
    Card(Suit suit, Rank rank, std::string modifier="") : suit_(suit), rank_(rank), modifier_(modifier) {}
 
-   void show() const {
+  void show() const {
       showCard();
       std::cout << "with modifier: ";
       showMod();
@@ -90,12 +90,17 @@ public:
 
 int main(){
    std::vector<Card> deck;
-   for (int r = static_cast<int>(Rank::ACE);
-         r <= static_cast<int>(Rank::KING);
-         ++r)
-{
-    deck.emplace_back(Suit::Hearts,   static_cast<Rank>(r));
-    deck.emplace_back(Suit::Diamonds, static_cast<Rank>(r));
-    deck.emplace_back(Suit::Clubs,    static_cast<Rank>(r));
-    deck.emplace_back(Suit::Spades,   static_cast<Rank>(r));
+   //para generar todo el deck (la bolsa) hay que iterar varias veces.
+   for (int r = 1; r <= 13; ++r){
+      for (int i = 0; i <=1; ++i){
+         deck.emplace_back(Suit::Hearts,   static_cast<Rank>(r));
+         deck.emplace_back(Suit::Diamonds, static_cast<Rank>(r));
+         deck.emplace_back(Suit::Clubs,    static_cast<Rank>(r));
+         deck.emplace_back(Suit::Spades,   static_cast<Rank>(r));
+      }
+}
+   deck.emplace_back(Suit::Jokers, Rank::JOKER);
+   deck.emplace_back(Suit::Jokers, Rank::JOKER);
+   std::cout << "Deck size: " << deck.size() << std::endl;
+   /*ahora que sabemos como se ve el deck podemos convertirlo en un clase para luego definir métodos y atributos de modo que el juego ya puede empezar a tomar forma, hay que investigar un poco sobre patrones de desarrollo o lo que sea, no importa */
 }

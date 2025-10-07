@@ -1,0 +1,1 @@
+Este es el inicio de un proyecto personal, hay muchas cosas que pueden salir mal, sin embargo las que más importan son las que tenemos en frente de nuestros ojos y dedicamos con amor al mundo desde la contemplación y gracias de la existencia.

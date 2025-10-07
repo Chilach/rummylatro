@@ -1,8 +1,14 @@
 #include <string>
+#include "newCard.h"
 #include <iostream>
 #include <vector>
 #include <memory>
+#include <algorithm> // for std::shuffle
+#include <random>    // for std::mt19937 and std::random_device (num aleatorios)
 
+//vamos a comentar todo el código pa ver que entiendo
+
+//clase donde se definen constanstes que se usaran siempre
 enum class Suit : uint8_t {Hearts, Diamonds, Clubs, Spades, Jokers};
 
 std::string suitToString(Suit s){ //funcion helper para convertir enum a string
@@ -88,6 +94,32 @@ public:
     void setModifier(const std::string& m) { modifier_ = m; }
 };
 
+class Deck{
+
+
+};
+//ahora nos encargamos de hacer un Deck
+//este es uno metodo que cambia el valor del deck en la dirección e memoria asignada
+void shuffleDeck(std::vector<Card>& deck) {
+    std::random_device rd;                      // seed
+    std::mt19937 g(rd());                       // random number generator
+    std::shuffle(deck.begin(), deck.end(), g);  // shuffle in place
+}
+//NOTAPERSONAL: hay que ver como hacer que el shuffle sea un metodo de la clase Deck
+//este otro metodo crea una copia del deck y la baraja, devolviendo la copia barajada
+//
+std::vector<Card> shuffleDeck(std::vector<Card> deck) {
+    // deck is passed by VALUE -> we get a copy of the original
+    // lo siguiente es equivalente a: shuffleDeck(deck);
+    std::random_device rd;          // seed
+    std::mt19937 g(rd());           // random number generator
+
+    std::shuffle(deck.begin(), deck.end(), g);  // shuffle the copy
+
+    return deck; // return the shuffled copy
+}
+
+
 int main(){
    std::vector<Card> deck;
    //para generar todo el deck (la bolsa) hay que iterar varias veces.
@@ -101,6 +133,7 @@ int main(){
 }
    deck.emplace_back(Suit::Jokers, Rank::JOKER);
    deck.emplace_back(Suit::Jokers, Rank::JOKER);
+   std::vector<Card> shuffledDeck = deck;
    std::cout << "Deck size: " << deck.size() << std::endl;
    /*ahora que sabemos como se ve el deck podemos convertirlo en un clase para luego definir métodos y atributos de modo que el juego ya puede empezar a tomar forma, hay que investigar un poco sobre patrones de desarrollo o lo que sea, no importa */
 }

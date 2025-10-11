@@ -61,8 +61,8 @@ std::string rankToString(Rank r){
 
 class Card{
 private:
-   Suit suit_;
    Rank rank_;
+   std::vector<Suit> suit_;
    std::string modifier_;
    
    void showMod() const{
@@ -72,32 +72,61 @@ private:
          std::cout << "none";
    }
    void showCard() const {
-      std::cout << suitToString(suit_) << " " << rankToString(rank_) <<std::endl;
+      std::cout << rankToString(rank_);
+      for(int i = 0; i < suit_.size(); ++i){
+      std::cout  << " of " << suitToString(suit_[i]) << ", ";
+      }
    }
 public:
-   Card(Suit suit, Rank rank, std::string modifier="") : suit_(suit), rank_(rank), modifier_(modifier) {}
+   Card(std::vector<Suit> suit, Rank rank, std::string modifier="") : rank_(rank), suit_(suit),  modifier_(modifier) {}
 
   void show() const {
       showCard();
-      std::cout << "with modifier: ";
+      std::cout << ", with modifier: ";
       showMod();
       std::cout << std::endl;
    }
-
-    Suit getSuit() const { return suit_; }
+    std::vector<Suit> getSuit() const { return suit_; }
     Rank getRank() const { return rank_; }
     const std::string& getModifier() const { return modifier_; }
 
     // setters (mutators)
-    void setSuit(const Suit& s) { suit_ = s; }
+    void setSuits(const std::vector<Suit>& suits) { suit_ = suits; }
     void setRank(const Rank& r) { rank_ = r; }
     void setModifier(const std::string& m) { modifier_ = m; }
+
+    void addSuit(Suit s) { suit_.push_back(s); }
+
+    bool removeSuit(Suit s) {
+        auto it = std::find(suit_.begin(), suit_.end(), s);
+        if (it != suit_.end()) { suit_.erase(it); return true; }
+        return false;
+    }
+    
+    void clearSuits() { suit_.clear(); }
 };
 
-class Deck{
+class Card_Mod{
+private:
+   std::string name_;
+   std::string description_;
+public:
+   Card_Mod(std::string name, std::string description) : name_(name), description_(description) {}
+   void show() const {
+      std::cout << "Modifier: " << name_ << ", Description: " << description_ << std::endl;
+   }
+   const std::string& getName() const { return name_; }
+   const std::string& getDescription() const { return description_; }
 
-
+   void setName(const std::string& name) { name_ = name; }
+   void setDescription(const std::string& description) { description_ = description; }
 };
+
+
+//class Deck{
+//private:
+//public:
+//};
 //ahora nos encargamos de hacer un Deck
 //este es uno metodo que cambia el valor del deck en la dirección e memoria asignada
 void shuffleDeck(std::vector<Card>& deck) {
@@ -108,32 +137,29 @@ void shuffleDeck(std::vector<Card>& deck) {
 //NOTAPERSONAL: hay que ver como hacer que el shuffle sea un metodo de la clase Deck
 //este otro metodo crea una copia del deck y la baraja, devolviendo la copia barajada
 //
-std::vector<Card> shuffleDeck(std::vector<Card> deck) {
-    // deck is passed by VALUE -> we get a copy of the original
-    // lo siguiente es equivalente a: shuffleDeck(deck);
-    std::random_device rd;          // seed
-    std::mt19937 g(rd());           // random number generator
 
-    std::shuffle(deck.begin(), deck.end(), g);  // shuffle the copy
-
-    return deck; // return the shuffled copy
-}
+//std::vector<Card> shuffleDeck(std::vector<Card> deck) {
+//    // deck is passed by VALUE -> we get a copy of the original
+//    // lo siguiente es equivalente a: shuffleDeck(deck);
+//    std::random_device rd;          // seed
+//    std::mt19937 g(rd());           // random number generator
+//
+//    std::shuffle(deck.begin(), deck.end(), g);  // shuffle the copy
+//
+//    return deck; // return the shuffled copy
+//}
 
 
 int main(){
-   std::vector<Card> deck;
-   //para generar todo el deck (la bolsa) hay que iterar varias veces.
-   for (int r = 1; r <= 13; ++r){
-      for (int i = 0; i <=1; ++i){
-         deck.emplace_back(Suit::Hearts,   static_cast<Rank>(r));
-         deck.emplace_back(Suit::Diamonds, static_cast<Rank>(r));
-         deck.emplace_back(Suit::Clubs,    static_cast<Rank>(r));
-         deck.emplace_back(Suit::Spades,   static_cast<Rank>(r));
-      }
-}
-   deck.emplace_back(Suit::Jokers, Rank::JOKER);
-   deck.emplace_back(Suit::Jokers, Rank::JOKER);
-   std::vector<Card> shuffledDeck = deck;
-   std::cout << "Deck size: " << deck.size() << std::endl;
-   /*ahora que sabemos como se ve el deck podemos convertirlo en un clase para luego definir métodos y atributos de modo que el juego ya puede empezar a tomar forma, hay que investigar un poco sobre patrones de desarrollo o lo que sea, no importa */
+   std::vector<Suit> suits = {Suit::Hearts, Suit::Diamonds};
+   std::vector<Card> Deck; 
+   Card c1({Suit::Hearts, Suit::Clubs}, Rank::ACE);
+   Card c2({Suit::Diamonds, Suit::Clubs}, Rank::ACE);
+   Deck.push_back(c1); Deck.push_back(c2);
+   for (const auto& card : Deck) {
+      card.show();
+   }
+   Deck[0].addSuit(Suit::Spades);
+   std::cout << "modificacion de la primera carta" << std::endl;
+   Deck[0].show();
 }

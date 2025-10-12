@@ -1,6 +1,6 @@
-#Cards Documentation
+# Cards Documentation
 
-##Preliminaries
+## Preliminaries
 **1. The Rank**
 We define the `Rank` of a card with the following code:
 ```cpp
@@ -29,7 +29,7 @@ enum class Suit : uint8_t {Hearts, Diamonds, Clubs, Spades, Jokers};
 ```
 It is self explanatory.
 
-##The `Card` class
+## The `Card` class
 
 The `Card` class is the main object in the project, to be constructed it uses three arguments for being initialized:
 - Rank rank_;

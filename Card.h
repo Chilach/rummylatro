@@ -108,7 +108,7 @@ public:
    }
     std::vector<Suit> getSuit() const { return suit_; }
     Rank getRank() const { return rank_; }
-    const std::vector<Cmod>& getModifier() const { return modifier_; }
+    const std::vector<Cmod>& getCmod() const { return modifier_; }
 
     // setters (mutators)
     void setSuits(const std::vector<Suit>& suits) { suit_ = suits; }
@@ -124,24 +124,16 @@ public:
     }
     
     void clearSuits() { suit_.clear(); }
+      
+    int getNorm() const {
+        if (rank_ == Rank::JOKER) return 0;
+        if (rank_ == Rank::ACE) return 1;
+        if (rank_ == Rank::JACK) return 10;
+        if (rank_ == Rank::QUEEN) return 10;
+        if (rank_ == Rank::KING) return 10;
+        return static_cast<int>(rank_);
+    }
 };
-
-class Card_Mod{
-private:
-   std::string name_;
-   std::string description_;
-public:
-   Card_Mod(std::string name, std::string description) : name_(name), description_(description) {}
-   void show() const {
-      std::cout << "Modifier: " << name_ << ", Description: " << description_ << std::endl;
-   }
-   const std::string& getName() const { return name_; }
-   const std::string& getDescription() const { return description_; }
-
-   void setName(const std::string& name) { name_ = name; }
-   void setDescription(const std::string& description) { description_ = description; }
-};
-
 
 //class Deck{
 //private:

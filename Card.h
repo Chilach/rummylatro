@@ -134,31 +134,3 @@ public:
         return static_cast<int>(rank_);
     }
 };
-
-//class Deck{
-//private:
-//public:
-//};
-//ahora nos encargamos de hacer un Deck
-//este es uno metodo que cambia el valor del deck en la dirección e memoria asignada
-void shuffleDeck(std::vector<Card>& deck) {
-    std::random_device rd;                      // seed
-    std::mt19937 g(rd());                       // random number generator
-    std::shuffle(deck.begin(), deck.end(), g);  // shuffle in place
-}
-//NOTAPERSONAL: hay que ver como hacer que el shuffle sea un metodo de la clase Deck
-//este otro metodo crea una copia del deck y la baraja, devolviendo la copia barajada
-//
-
-//std::vector<Card> shuffleDeck(std::vector<Card> deck) {
-//    // deck is passed by VALUE -> we get a copy of the original
-//    // lo siguiente es equivalente a: shuffleDeck(deck);
-//    std::random_device rd;          // seed
-//    std::mt19937 g(rd());           // random number generator
-//
-//    std::shuffle(deck.begin(), deck.end(), g);  // shuffle the copy
-//
-//    return deck; // return the shuffled copy
-//}
-
-

@@ -21,6 +21,24 @@ std::string suitToString(Suit s){ //funcion helper para convertir enum a string
       default: return "Unknown";
    }
 };
+//los colores en rummy son amarillo, azul, rojo, negro
+//Navy = azul + negro
+//Wine = red + negro
+enum class Cmod {None, Wild, Green, Orange, Brown, Magenta, Navy, Wine};
+
+std::string cmodToString(Cmod c){
+   switch(c){
+      case Cmod::None: return "None";
+      case Cmod::Wild: return "Wild";
+      case Cmod::Green: return "Green";
+      case Cmod::Orange: return "Orange";
+      case Cmod::Brown: return "Brown";
+      case Cmod::Magenta: return "Magenta";
+      case Cmod::Navy: return "Navy";
+      case Cmod::Wine: return "Wine";
+      default: return "Unknown";
+   }
+};
 
 enum class Rank {
     ACE = 1,
@@ -63,13 +81,17 @@ class Card{
 private:
    Rank rank_;
    std::vector<Suit> suit_;
-   std::string modifier_;
+   std::vector<Cmod> modifier_;
    
    void showMod() const{
-      if (modifier_ != "")
-         std::cout << " " << modifier_;
+      if (modifier_[0] != Cmod::None)
+         //std::cout << " " << modifier_;
+         for(const auto&mod : modifier_){
+            std::cout << cmodToString(mod) << ", ";
+         }
+      
       else
-         std::cout << "none";
+         std::cout << cmodToString(Cmod::None);
    }
    void showCard() const {
       std::cout << rankToString(rank_);
@@ -78,22 +100,22 @@ private:
       }
    }
 public:
-   Card(std::vector<Suit> suit, Rank rank, std::string modifier="") : rank_(rank), suit_(suit),  modifier_(modifier) {}
+   Card(std::vector<Suit> suit, Rank rank, std::vector<Cmod> modifier={Cmod::None}) : rank_(rank), suit_(suit),  modifier_(modifier) {}
 
   void show() const {
       showCard();
-      std::cout << ", with modifier: ";
+      std::cout << "with modifier: ";
       showMod();
       std::cout << std::endl;
    }
     std::vector<Suit> getSuit() const { return suit_; }
     Rank getRank() const { return rank_; }
-    const std::string& getModifier() const { return modifier_; }
+    const std::vector<Cmod>& getModifier() const { return modifier_; }
 
     // setters (mutators)
     void setSuits(const std::vector<Suit>& suits) { suit_ = suits; }
     void setRank(const Rank& r) { rank_ = r; }
-    void setModifier(const std::string& m) { modifier_ = m; }
+    void setModifier(const std::vector<Cmod>& m) { modifier_ = m; }
 
     void addSuit(Suit s) { suit_.push_back(s); }
 
@@ -153,8 +175,8 @@ void shuffleDeck(std::vector<Card>& deck) {
 int main(){
    std::vector<Suit> suits = {Suit::Hearts, Suit::Diamonds};
    std::vector<Card> Deck; 
-   Card c1({Suit::Hearts, Suit::Clubs}, Rank::ACE);
-   Card c2({Suit::Diamonds, Suit::Clubs}, Rank::ACE);
+   Card c1({Suit::Hearts, Suit::Clubs}, Rank::ACE, {Cmod::Wild});
+   Card c2({Suit::Diamonds, Suit::Clubs}, Rank::ACE, {Cmod::Green, Cmod::Magenta});
    Deck.push_back(c1); Deck.push_back(c2);
    for (const auto& card : Deck) {
       card.show();

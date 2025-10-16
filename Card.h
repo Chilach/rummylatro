@@ -1,3 +1,5 @@
+#pragma once
+
 #include <string>
 #include <iostream>
 #include <vector>
@@ -124,7 +126,7 @@ public:
     }
     
     void clearSuits() { suit_.clear(); }
-      
+
     int getNorm() const {
         if (rank_ == Rank::JOKER) return 0;
         if (rank_ == Rank::ACE) return 1;

@@ -1,47 +1,73 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
+using namespace sf;
+
 int main() {
     // Create the window
-    sf::RenderWindow window(sf::VideoMode(640, 480), "SFML + Iosevka Test");
-    window.setFramerateLimit(60);
+    RenderWindow window(VideoMode(640, 480), "SFML + Iosevka Test"); //bas, altura
+    window.setFramerateLimit(60);//define los fps
 
     // Draw a simple card shape
-    sf::RectangleShape card(sf::Vector2f(120.f, 180.f));
-    card.setFillColor(sf::Color::White);
-    card.setOutlineColor(sf::Color::Black);
+    RectangleShape card(Vector2f(120.f, 180.f));
+    card.setFillColor(Color::White);
+    card.setOutlineColor(Color::Black);
     card.setOutlineThickness(3.f);
     card.setPosition(260.f, 150.f);
 
     // Load Iosevka font
-    sf::Font font;
+    Font font;
     if (!font.loadFromFile("Iosevka-Bold.ttc")) {
         std::cerr << "❌ Error: could not load font 'Iosevka-Bold.ttc'\n";
         return 1;
     }
 
     // Draw rank text (A)
-    sf::Text rank("A", font, 36);
-    rank.setFillColor(sf::Color::Black);
+    Text rank("A", font, 36);
+    rank.setFillColor(Color::Black);
     rank.setPosition(card.getPosition().x + 12, card.getPosition().y + 12);
 
     // Draw suit text (♥)
-    sf::Text suit("♥", font, 32);
-    suit.setFillColor(sf::Color::Red);
-    suit.setPosition(card.getPosition().x + 12, card.getPosition().y + 56);
+    //Text suit("HEARTS", font, 32);
+    //suit.setFillColor(Color::Red);
+    //suit.setPosition(card.getPosition().x + 12, card.getPosition().y + 56);
+    //
+    //// ----------------------------------------------------
+    // Load and draw the HEART image instead of text
+    // ----------------------------------------------------
+    Texture heartTexture;
+    if (!heartTexture.loadFromFile("heart.png")) {
+        std::cerr << "❌ Error: could not load texture 'heart.png'\n";
+        // Optionally, fall back to text or just exit
+        // For now, let's exit if the required texture isn't found
+        return 1;
+    }
+
+    // Create a sprite from the texture
+    Sprite heartSprite(heartTexture);
+
+    // Set the position for the sprite (similar to where the text was)
+    // You might need to adjust the position and scale based on your image size
+    float spriteX = card.getPosition().x + 5.f;
+    float spriteY = card.getPosition().y + 56.f; // The original suit text Y position
+    heartSprite.setPosition(spriteX, spriteY);
+
+    // Optional: Scale the sprite if your heart.png is too large or too small
+     heartSprite.setScale(2.f, 2.f); // Example: half size
+    // ----------------------------------------------------
 
     // Main loop
     while (window.isOpen()) {
-        sf::Event ev;
+        Event ev;
         while (window.pollEvent(ev)) {
-            if (ev.type == sf::Event::Closed)
+            if (ev.type == Event::Closed)
                 window.close();
         }
 
-        window.clear(sf::Color(100, 150, 200)); // background
+        window.clear(Color(100, 150, 200)); // background
         window.draw(card);
         window.draw(rank);
-        window.draw(suit);
+        window.draw(heartSprite);;
         window.display();
     }
 

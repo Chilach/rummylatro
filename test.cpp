@@ -3,32 +3,21 @@
 #include "Player.h"
 #include <random>
 
-
-
 int main(){
-    //creo un deck de prueba con apenas tres cartas
-    //---------------------------------------
-    std::vector<Suit> suits = {Suit::Hearts, Suit::Diamonds};
-    std::vector<Card> myDeck; 
-    Card c1({Suit::Hearts, Suit::Clubs}, Rank::ACE, {Cmod::Wild});
-    Card c2({Suit::Diamonds, Suit::Clubs}, Rank::ACE, {Cmod::Green, Cmod::Magenta});
-    Card c3(suits, Rank::KING, {Cmod::None});
-    myDeck.push_back(c1); myDeck.push_back(c2); myDeck.push_back(c3);
-    Deck deck(myDeck);
+    Deck TableDeck = Deck::createStandardDeck();
+    TableDeck.shuffleDeck();
 
-    std::vector<Card> myStandardCards;
-    std::vector<Cmod> mod = {Cmod::None};
-    
-    for (int i = 0; i < 2; ++i){
-        for (int value = 1; value <= 13; ++value) {
-            myStandardCards.push_back(Card({Suit::Hearts, Suit::Clubs, Suit::Diamonds, Suit::Spades}, static_cast<Rank>(value), mod));
-            myStandardCards.push_back(Card({Suit::Diamonds, Suit::Clubs, Suit::Diamonds, Suit::Spades}, static_cast<Rank>(value), mod));
-            myStandardCards.push_back(Card({Suit::Clubs, Suit::Clubs, Suit::Diamonds, Suit::Spades}, static_cast<Rank>(value), mod));
-            myStandardCards.push_back(Card({Suit::Spades, Suit::Clubs, Suit::Diamonds, Suit::Spades}, static_cast<Rank>(value), mod));
-            }
-        myStandardCards.push_back(Card({Suit::Jokers}, Rank::JOKER, mod));
-        }
-    std::cout << "Standard deck size should be 54: " << myStandardCards.size() << std::endl;
-    //add this chunck of code to Deck.h
+    std::cout << TableDeck.deckSize() << std::endl;
+    Player p1( "Alice", Deck(TableDeck.dealCards(5)) );
+    p1.showName();
+    p1.showDeck();
+    std::cout << TableDeck.deckSize() << std::endl;
+    std::cout << "--------------------" << std::endl;
+    Player p2( "Bob", Deck(TableDeck.dealCards(5)) );
+    p2.showName();
+    p2.showDeck();
+
+    std::cout << TableDeck.deckSize() << std::endl;
+
     return 0;
 }

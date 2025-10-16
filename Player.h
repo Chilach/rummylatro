@@ -36,6 +36,10 @@ public:
         return name_;
     }
 
+    void setDeck(const Deck& deck) {
+        deck_ = deck;
+    }
+
     Deck& getDeck() {
         return deck_;
     }
@@ -48,4 +52,3 @@ public:
     }
 
 };
-

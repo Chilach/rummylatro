@@ -1,6 +1,8 @@
 #include "Deck.h"
 #include "Card.h"
 #include "Player.h"
+#include <random>
+
 
 
 int main(){
@@ -13,22 +15,20 @@ int main(){
     Card c3(suits, Rank::KING, {Cmod::None});
     myDeck.push_back(c1); myDeck.push_back(c2); myDeck.push_back(c3);
     Deck deck(myDeck);
-    //---------------------------------------
-    //creo un jugador de prueba
-    Player p1("Alice", deck);
-    //p1.getDeck().shuffleDeck();
-    //un ejemplo de uso de todo lo que hemos hecho asta ahora
-    p1.showDeck();
-    p1.removeSpecificCard(c2);
-    std::cout << "After removing a card: " << std::endl;
-    p1.showDeck();
-    //otra forma de hacerlo
-    p1.getDeck().removeSpecificCard(c1);
-    std::cout << "After removing a card: " << std::endl;
-    p1.showDeck();
 
-
-//hay que tener en cuenta que quien hace las acciones sobre el deck es el player...
-//falta construir la locgica sobre los players
+    std::vector<Card> myStandardCards;
+    std::vector<Cmod> mod = {Cmod::None};
+    
+    for (int i = 0; i < 2; ++i){
+        for (int value = 1; value <= 13; ++value) {
+            myStandardCards.push_back(Card({Suit::Hearts, Suit::Clubs, Suit::Diamonds, Suit::Spades}, static_cast<Rank>(value), mod));
+            myStandardCards.push_back(Card({Suit::Diamonds, Suit::Clubs, Suit::Diamonds, Suit::Spades}, static_cast<Rank>(value), mod));
+            myStandardCards.push_back(Card({Suit::Clubs, Suit::Clubs, Suit::Diamonds, Suit::Spades}, static_cast<Rank>(value), mod));
+            myStandardCards.push_back(Card({Suit::Spades, Suit::Clubs, Suit::Diamonds, Suit::Spades}, static_cast<Rank>(value), mod));
+            }
+        myStandardCards.push_back(Card({Suit::Jokers}, Rank::JOKER, mod));
+        }
+    std::cout << "Standard deck size should be 54: " << myStandardCards.size() << std::endl;
+    //add this chunck of code to Deck.h
     return 0;
 }

@@ -1,0 +1,3 @@
+g++ -std=c++17 sfml_test.cpp -o sfml_test -lsfml-graphics -lsfml-window -lsfml-system
+
+sudo ./sfml_test

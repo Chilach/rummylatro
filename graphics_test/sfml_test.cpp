@@ -1,4 +1,6 @@
 #include <SFML/Graphics.hpp>
+#include "../Card.h"
+#include "../Deck.h"
 #include <iostream>
 
 using namespace sf;
@@ -22,8 +24,10 @@ int main() {
         return 1;
     }
 
+
     // Draw rank text (A)
-    Text rank("A", font, 36);
+    Card HA({Suit::Hearts}, Rank::ACE);
+    Text rank(HA.rank(), font, 40);
     rank.setFillColor(Color::Black);
     rank.setPosition(card.getPosition().x + 12, card.getPosition().y + 12);
 

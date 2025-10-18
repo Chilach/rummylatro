@@ -3,8 +3,6 @@
 #include "Player.h"
 #include <random>
 
-unsigned int seed = 12345; // the "run" seed
-std::mt19937 rng(seed);
 
 int main(){
     Deck TableDeck = Deck::createStandardDeck();

@@ -1,17 +1,34 @@
 #include <SFML/Graphics.hpp>
-//#include <"../Player.h">
+#include "../Player.h"
 #include "../Card.h"
 #include "../Deck.h"
 #include <iostream>
 
-//class PlayerElements {
-//private:
-//    Player player_;
-//public:
-//    PlayerElements(const Player& player) : player_(player) {}
-//};
+/*
+- Implementar la parte gráfica de la carta
+ */
 
 using namespace sf;
+
+//class GCard {
+//private: 
+//    Card card_;
+//    Sprite sprite_;
+//
+//public:
+//    GCard(const Card& card, const Texture& texture)
+//        : card_(card), sprite_(texture) {
+//        // Optionally set up the sprite (scale, origin, etc.) here
+//    }
+//
+//    void setPosition(float x, float y) {
+//        sprite_.setPosition(x, y);
+//    }
+//
+//    void draw(RenderWindow& window) {
+//        window.draw(sprite_);
+//    }
+//};
 
 Color hexColor(unsigned int hex, uint8_t alpha = 255) {
     return Color(
@@ -31,24 +48,38 @@ namespace Colors {
 
 int main() {
 
-    Deck TableDeck = Deck::createStandardDeck();
+    //Deck TableDeck = Deck::createStandardDeck();
     //TableDeck.shuffleDeck();
     //std::cout << TableDeck.deckSize() << std::endl;
-    //Player p1("Alice", Deck(TableDeck.dealCards(5)) );
+    Card c1({Suit::Hearts, Suit::Clubs}, Rank::ACE, {Cmod::Wild});
+    Player p1("Alice", Deck({c1}) );
         
     RenderWindow window(VideoMode(800, 600), "Draggable Card (responsive)");
     window.setFramerateLimit(60);
 
 
 
-    Texture a_spadesTex;
-    if (!a_spadesTex.loadFromFile("/home/julian/juli/sem8/rummy-latro/art/try2/a_spades.png")) {
+    Texture cartTex;
+    if (!cartTex.loadFromFile("/home/julian/juli/sem8/rummy-latro/art/try4/cart.png")) {
+        std::cerr << "Heart image not found\n";
+        return -1;
+    }
+
+    Texture ATex;
+    if (!ATex.loadFromFile("/home/julian/juli/sem8/rummy-latro/art/try4/A.png")) {
+        std::cerr << "Heart image not found\n";
+        return -1;
+    }
+
+    Texture spadesTex;
+    if (!spadesTex.loadFromFile("/home/julian/juli/sem8/rummy-latro/art/try4/spades.png")) {
         std::cerr << "Heart image not found\n";
         return -1;
     }
     // If your heart.png is 50x50, you can scale to fit card if needed:
-    Sprite a_spades(a_spadesTex);
+    Sprite a_spades(cartTex);
     a_spades.setScale(8.f, 8.f); // doubles width and height
+    a_spades.setColor(sf::Color(255, 0, 0));
                                  
     Font font;
     if (!font.loadFromFile("Iosevka-Bold.ttc")) {
@@ -56,10 +87,9 @@ int main() {
         return -1;
     }
 
-    // Rank text
-    //Text p1name(p1.getName(), font, 20);
-    //p1name.setFillColor(Colors::Black);
-    //p1name.setPosition(a_spades.getPosition().x + 8.f, a_spades.getPosition().y + 6.f);
+    Text p1name(p1.getName(), font, 20);
+    p1name.setFillColor(Colors::Black);
+    p1name.setPosition(a_spades.getPosition().x + 8.f, a_spades.getPosition().y + 6.f);
 
 
     // compute scale so heart fits inside card (optional)
@@ -114,7 +144,7 @@ int main() {
 
         window.clear(Colors::Green);
         window.draw(a_spades);
-        //window.draw(p1name);
+        window.draw(p1name);
         window.display();
     }
 

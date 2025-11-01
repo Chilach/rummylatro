@@ -9,35 +9,91 @@
  */
 using namespace sf;
 
+//class GCard {
+//private:
+//public:
+//};
+//
+Texture loadCardTexture(Card card){
+    Texture cardTex;
+    if (!cardTex.loadFromFile(card.getCardTextureDir())){
+        std::cerr << "Failed to load textures\n";
+    }
+    return cardTex;
+}
+
+Texture loadRankTexture(Card card){
+    Texture rankTex;
+    if (!rankTex.loadFromFile(card.getRankTextureDir())){
+        std::cerr << "Failed to load textures\n";
+    }
+    return rankTex;
+}
+
+std::vector<Texture> loadSuitTextures(Card card){
+    std::vector<Texture> suitTextures;
+    for (Suit suit : card.getSuits()){
+        Texture suitTex;
+        if (!suitTex.loadFromFile(card.getSuitTextureDirs(suit))){
+            std::cerr << "Failed to load textures\n";
+        }
+        suitTextures.push_back(suitTex);
+    }
+    return suitTextures;
+}
+
 
 
 int main() {
     RenderWindow window(VideoMode(800, 600), "Composited Card");
 
+    Card c1({Suit::SPADES}, Rank::ACE, {Cmod::Wild});
+
     Texture cardTex, rankTex, spadeTex;
-    if (!cardTex.loadFromFile("/home/julian/juli/sem8/rummy-latro/art/try4/cart.png") ||
-        !rankTex.loadFromFile("/home/julian/juli/sem8/rummy-latro/art/try4/A.png") ||
-        !spadeTex.loadFromFile("/home/julian/juli/sem8/rummy-latro/art/try4/spades.png")) {
+    if (!cardTex.loadFromFile("/home/julian/juli/sem8/rummy-latro/art/card/card.png") ||
+        !rankTex.loadFromFile("/home/julian/juli/sem8/rummy-latro/art/rank/A.png") ||
+        !spadeTex.loadFromFile("/home/julian/juli/sem8/rummy-latro/art/suit/SPADES.png")) {
         std::cerr << "Failed to load textures\n";
         return -1;
     }
 
-    //configure card sprite (base layer)
+    ////configure card sprite (base layer)
     Sprite card(cardTex);
     card.setScale(8.f, 8.f); // doubles width and height
-    card.setPosition(200, 200);
-    
-    //configure rank sprite (another layer)
+    //card.setPosition(200, 200);
+    //
+    ////configure rank sprite (another layer)
     Sprite rank(rankTex);
-    rank.setScale(8.f, 8.f);
-    rank.setPosition(card.getPosition() + Vector2f(20, 20));
-    rank.setColor(sf::Color(0, 0, 0));
+    //rank.setScale(8.f, 8.f);
+    //rank.setPosition(card.getPosition() + Vector2f(20, 20));
+    //rank.setColor(sf::Color(0, 0, 0));
 
-    //configure suit sprite (another layer)
+    ////configure suit sprite (another layer)
     Sprite suit(spadeTex);
+    //suit.setScale(8.f, 8.f);
+    //suit.setPosition(card.getPosition() + Vector2f(20, 80));
+    //suit.setColor(sf::Color(0, 0, 0));
+    
+    //ahora vamos a hacer los mismo pero con renderTex
+    RenderTexture renderTex;
+    if (!renderTex.create(cardTex.getSize().x * 8, cardTex.getSize().y * 8)) {
+        std::cerr << "Failed to create render texture\n";
+        return -1;
+    }
+    rank.setScale(8.f, 8.f);
+    rank.setPosition(10, 10);
+    rank.setColor(sf::Color(0, 0, 0));
     suit.setScale(8.f, 8.f);
-    suit.setPosition(card.getPosition() + Vector2f(20, 80));
+    suit.setPosition(10, 80);
     suit.setColor(sf::Color(0, 0, 0));
+
+    renderTex.clear(Color::Transparent);
+    renderTex.draw(card);
+    renderTex.draw(rank);
+    renderTex.draw(suit);
+    renderTex.display();
+
+    Sprite composedCard(renderTex.getTexture());
 
     while (window.isOpen()) {
         Event e;
@@ -47,9 +103,10 @@ int main() {
         }
 
         window.clear(Color::Blue);
-        window.draw(card);
-        window.draw(rank);
-        window.draw(suit);
+        window.draw(composedCard);
+        //window.draw(card);
+        //window.draw(rank);
+        //window.draw(suit);
         window.display();
     }
 }

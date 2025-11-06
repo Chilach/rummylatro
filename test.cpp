@@ -20,14 +20,18 @@ int main(){
 
     //std::cout << TableDeck.deckSize() << std::endl;
     //inicializacion de unas cartas para revisar la composicion
-    Card c1({Suit::SPADES, Suit::HEARTS}, Rank::ACE, {Cmod::Wild});
+    Card c1({Suit::DIAMONDS, Suit::SPADES, Suit::HEARTS}, Rank::ACE, {Cmod::Wild});
     c1.show();
-    std::cout << "directorio del sprite de la carta" << std::endl;
-    std::cout << c1.getCardSpriteDir() << std::endl;
-    std::cout << "directorios de los sprites de los palos" << std::endl;
-    for (const auto & dir : c1.getSuitSpriteDirs()){
-        std::cout << dir << std::endl;
-    }
+    //std::cout << "directorio del sprite de la carta" << std::endl;
+    //std::cout << c1.getCardTextureDir() << std::endl;
+    //std::cout << "directorios de los sprites de los palos" << std::endl;
+    //for (const auto & dir : c1.getSuitTextureDirs()){
+    //    std::cout << dir << std::endl;
+    //}
+    c1.orderGLSuits();
+    c1.show();
+    c1.orderLGSuits();
+    c1.show();
     //std::cout << c1.cardDirBase;
     //c1.getSuitDirs();
     //for (const auto&mysuit: c1.getSuitDirs()){

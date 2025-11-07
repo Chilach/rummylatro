@@ -10,69 +10,25 @@
 
 using namespace sf;
 
-//class GCard {
-//private: 
-//    Card card_;
-//    Sprite sprite_;
-//
-//public:
-//    GCard(const Card& card, const Texture& texture)
-//        : card_(card), sprite_(texture) {
-//        // Optionally set up the sprite (scale, origin, etc.) here
-//    }
-//
-//    void setPosition(float x, float y) {
-//        sprite_.setPosition(x, y);
-//    }
-//
-//    void draw(RenderWindow& window) {
-//        window.draw(sprite_);
-//    }
-//};
-
-Color hexColor(unsigned int hex, uint8_t alpha = 255) {
-    return Color(
-        (hex >> 16) & 0xFF,  // Red
-        (hex >> 8)  & 0xFF,  // Green
-        hex & 0xFF,          // Blue
-        alpha
-    );
-}
-
-namespace Colors {
-    const sf::Color White = hexColor(0xeeeeee);
-    const sf::Color Black = hexColor(0x1c1c1c);
-    const sf::Color Green = hexColor(0x00afaf);
-    const sf::Color Cream     = hexColor(0xFFF5E1);
-}
-
 int main() {
 
-    //Deck TableDeck = Deck::createStandardDeck();
-    //TableDeck.shuffleDeck();
-    //std::cout << TableDeck.deckSize() << std::endl;
-    //Card c1({Suit::HEARTS, Suit::CLUBS}, Rank::ACE, {Cmod::Wild});
-    //Player p1("Alice", Deck({c1}) );
-        
     RenderWindow window(VideoMode(800, 600), "Draggable Card (responsive)");
     window.setFramerateLimit(60);
 
-
-
     Texture cardTex;
-    if (!cardTex.loadFromFile("/home/julian/juli/sem8/rummy-latro/art/try4/card.png")) {
-        std::cerr << "Heart image not found\n";
+    if (!cardTex.loadFromFile("/home/julian/juli/sem8/rummy-latro/art/cards/card.png")) {
+        std::cerr << "card image not found\n";
         return -1;
     }
 
     Texture ATex;
-    if (!ATex.loadFromFile("/home/julian/juli/sem8/rummy-latro/art/try4/A.png")) {
+    if (!ATex.loadFromFile("/home/julian/juli/sem8/rummy-latro/art/rank/A.png")) {
         std::cerr << "Heart image not found\n";
         return -1;
     }
 
     Texture spadesTex;
-    if (!spadesTex.loadFromFile("/home/julian/juli/sem8/rummy-latro/art/try4/spades.png")) {
+    if (!spadesTex.loadFromFile("/home/julian/juli/sem8/rummy-latro/art/suits/SPADES.png")) {
         std::cerr << "Heart image not found\n";
         return -1;
     }
@@ -87,13 +43,6 @@ int main() {
         return -1;
     }
 
-    //Text p1name(p1.getName(), font, 20);
-    //p1name.setFillColor(Colors::Black);
-    //p1name.setPosition(a_spades.getPosition().x + 8.f, a_spades.getPosition().y + 6.f);
-
-
-    // compute scale so heart fits inside card (optional)
-
     bool isDragging = false;
     Vector2f dragOffset; // world-space offset between card pos and click
 
@@ -106,8 +55,10 @@ int main() {
             // --- handle window resize: update the view so world coords match window pixels ---
             if (event.type == Event::Resized) {
                 // Set a new view with top-left at (0,0) and size equal to new window size
-                FloatRect visibleArea(0.f, 0.f, static_cast<float>(event.size.width),
-                                                    static_cast<float>(event.size.height));
+                FloatRect visibleArea(0.f, 0.f,
+                    static_cast<float>(event.size.width),
+                    static_cast<float>(event.size.height)
+                );
                 window.setView(View(visibleArea));
                 // (Optional) You may want to reposition UI elements relative to new size here
             }

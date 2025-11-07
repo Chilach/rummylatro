@@ -21,7 +21,6 @@ public:
     }
 
     void shuffleDeck() {
-        
         //std::random_device rd;
         std::mt19937 g(seed);
         std::shuffle(cards_.begin(), cards_.end(), g);
@@ -41,7 +40,7 @@ public:
     //add a fuction to remove specifically a card lets say an ace of spades
     void removeSpecificCard(const Card& card) {
         auto it = std::find_if(cards_.begin(), cards_.end(), [&card](const Card& c) {
-            return c.getRank() == card.getRank() && c.getSuit() == card.getSuit() && c.getCmod() == card.getCmod();
+            return c.getRank() == card.getRank() && c.getSuits() == card.getSuits() && c.getCmod() == card.getCmod();
         });
         if (it != cards_.end()) {
             cards_.erase(it);
@@ -66,12 +65,12 @@ public:
 
         for (int i = 0; i < 2; ++i){
             for (int value = 1; value <= 13; ++value) {
-                myCards.push_back(Card({Suit::Hearts}, static_cast<Rank>(value)));
-                myCards.push_back(Card({Suit::Diamonds}, static_cast<Rank>(value)));
-                myCards.push_back(Card({Suit::Clubs}, static_cast<Rank>(value)));
-                myCards.push_back(Card({Suit::Spades}, static_cast<Rank>(value)));
+                myCards.push_back(Card({Suit::HEARTS}, static_cast<Rank>(value)));
+                myCards.push_back(Card({Suit::DIAMONDS}, static_cast<Rank>(value)));
+                myCards.push_back(Card({Suit::CLUBS}, static_cast<Rank>(value)));
+                myCards.push_back(Card({Suit::SPADES}, static_cast<Rank>(value)));
                 }
-            myCards.push_back(Card({Suit::Jokers}, Rank::JOKER));
+            myCards.push_back(Card({Suit::JOKERS}, Rank::JOKER));
             }
         Deck deck(myCards);
         return deck;

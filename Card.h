@@ -6,18 +6,36 @@
 #include <memory>
 #include <algorithm> // for std::shuffle
 #include <random>    // for std::mt19937 and std::random_device (num aleatorios)
+#include <SFML/Graphics.hpp>
 
+sf::Color hexColor(unsigned int hex, uint8_t alpha = 255) {
+    return sf::Color(
+        (hex >> 16) & 0xFF,  // Red
+        (hex >> 8)  & 0xFF,  // Green
+        hex & 0xFF,          // Blue
+        alpha
+    );
+}
 //vamos a comentar todo el código pa ver que entiendo
-
+namespace myColors {
+    const sf::Color WHITE = hexColor(0xeeeeee);
+    const sf::Color BLACK = hexColor(0x1c1c1c);
+    const sf::Color RED = hexColor(0xd70000);
+    const sf::Color BLUE = hexColor(0x0087af);
+    const sf::Color YELLOW = hexColor(0xffaf00);
+    const sf::Color MULTICOLOR = hexColor(0xffc0cb);
+    const sf::Color GREEN = hexColor(0x00afaf);
+    const sf::Color CREAM = hexColor(0xFFF5E1);
+}
 //clase donde se definen constanstes que se usaran siempre
-enum class Suit : uint8_t {HEARTS, DIAMONDS, CLUBS, SPADES, JOKERS};
+enum class Suit : uint8_t {SPADES, HEARTS, DIAMONDS, CLUBS, JOKERS};
 
 std::string suitToString(Suit s){ //funcion helper para convertir enum a string
    switch(s){
+      case Suit::SPADES: return "SPADES";
       case Suit::HEARTS: return "HEARTS";
       case Suit::DIAMONDS: return "DIAMONDS";
       case Suit::CLUBS: return "CLUBS";
-      case Suit::SPADES: return "SPADES";
       case Suit::JOKERS: return "JOKERS";
       default: return "Unknown";
    }
@@ -79,6 +97,17 @@ std::string rankToString(Rank r){
    }
 };
 
+sf::Color suitToColor(Suit s){
+   switch(s){
+      case Suit::SPADES: return myColors::BLACK;
+      case Suit::HEARTS: return myColors::RED;
+      case Suit::DIAMONDS: return myColors::YELLOW;
+      case Suit::CLUBS: return myColors::BLUE;
+      case Suit::JOKERS: return myColors::MULTICOLOR;
+      default: return myColors::WHITE;
+   }
+};
+
 
 
 class Card{
@@ -119,7 +148,7 @@ public:
    std::vector<std::string> getSuitTextureDirs() const {
       std::vector<std::string> suitDirs;
       for (const auto& s : suit_) {
-         suitDirs.push_back("/home/julian/juli/sem8/rummy-latro/art/suit/" + suitToString(s) + ".png");
+         suitDirs.push_back("/home/julian/juli/sem8/rummy-latro/art/suits/" + suitToString(s) + ".png");
       }
       return suitDirs;
    }
@@ -139,36 +168,26 @@ public:
     void setSuits(const std::vector<Suit>& suits) { suit_ = suits; }
     void setRank(const Rank& r) { rank_ = r; }
     void setModifier(const std::vector<Cmod>& m) { modifier_ = m; }
+   //me retorna el suit mas alto
+    Suit getFirstSuit() const {
+        if (!suit_.empty()) {
+            return suit_.front();
+        }
+        throw std::runtime_error("No suits available");
+    }
 
-//-------------------------------------------------------------------------------------------      
-//   std::vector<std::string> suitDirBase;
-//
-//   std::vector<std::string> getSuitDirs(){
-//      for(const auto& s : suit_){
-//         suitDirBase.push_back("/home/julian/juli/sem8/rummy-latro/art/suit/" + suitToString(s) + ".png");
-//      }
-//      return suitDirBase;
-//   }
-//
-//   std::string rankDirBase;
-//
-//   void findRankDir(){
-//      rankDirBase = "/home/julian/juli/sem8/rummy-latro/art/rank/" + rankToString(rank_) + ".png";
-//   }
-//
-//   void showRankDir(){
-//      std::cout << rankDirBase << std::endl;
-//   }
+    void orderGLSuits() {
+    std::sort(suit_.begin(), suit_.end(), [](Suit a, Suit b) {
+        return static_cast<uint8_t>(a) < static_cast<uint8_t>(b);
+    });
+    }
 
-//luego miramos como hacemos que esto funcione
-   //
-//    //getters
-//    std::vector<std::string> getSuitDir() {
-//        populateSuitDir();
-//        return suitDir;
-//    }
-//
-//-------------------------------------------------------------------------------------------      
+    void orderLGSuits() {
+    std::sort(suit_.begin(), suit_.end(), [](Suit a, Suit b) {
+        return static_cast<uint8_t>(a) > static_cast<uint8_t>(b);
+    });
+    }
+
     void addSuit(Suit s) { suit_.push_back(s); }
 
     bool removeSuit(Suit s) {
@@ -197,3 +216,38 @@ public:
     //swap(a.isJoker_, b.isJoker_);
 }
 };
+//---------------------------------------------------------------
+//---------------------------------------------------------------
+//estas funciones las debemos acomodar dentro de la clase Card
+//---------------------------------------------------------------
+//---------------------------------------------------------------
+
+
+
+sf::Texture loadCardTexture(Card card){
+   sf::Texture cardTex;
+    if (!cardTex.loadFromFile(card.getCardTextureDir())){
+        std::cerr << "Failed to load textures\n";
+    }
+    return cardTex;
+}
+
+sf::Texture loadRankTexture(Card card){
+   sf::Texture rankTex;
+    if (!rankTex.loadFromFile(card.getRankTextureDir())){
+        std::cerr << "Failed to load textures\n";
+    }
+    return rankTex;
+}
+
+std::vector<sf::Texture> loadSuitTextures(Card card){
+    std::vector<sf::Texture> suitTextures;
+    for (const auto &dir : card.getSuitTextureDirs()){
+       sf::Texture suitTex;
+        if (!suitTex.loadFromFile(dir)){
+            std::cerr << "Failed to load textures\n";
+        }
+        suitTextures.push_back(suitTex);
+    }
+    return suitTextures;
+}

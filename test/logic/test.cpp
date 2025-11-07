@@ -1,6 +1,9 @@
-#include "Deck.h"
-#include "Card.h"
-#include "Player.h"
+#include "../../src/Deck.h"
+#include "../../src/Card.h"
+#include "../../src/Player.h"
+#include "../../src/Hand.h"
+#include <iostream>
+
 #include <random>
 
 

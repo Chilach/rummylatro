@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
-#include "../Player.h"
-#include "../Card.h"
-#include "../Deck.h"
+#include "../../src/Player.h"
+#include "../../src/Card.h"
+#include "../../src/Deck.h"
 #include <iostream>
 
 /*

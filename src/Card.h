@@ -138,17 +138,17 @@ public:
    
    //directorio de la carta
    std::string getCardTextureDir() const {
-      return "/home/julian/juli/sem8/rummy-latro/art/cards/card.png";
+      return "assets/cards/card.png";
    }
 
    std::string getRankTextureDir() const {
-      return "/home/julian/juli/sem8/rummy-latro/art/rank/" + rankToString(rank_) + ".png";
+      return "assets/rank/" + rankToString(rank_) + ".png";
    }
 
    std::vector<std::string> getSuitTextureDirs() const {
       std::vector<std::string> suitDirs;
       for (const auto& s : suit_) {
-         suitDirs.push_back("/home/julian/juli/sem8/rummy-latro/art/suits/" + suitToString(s) + ".png");
+         suitDirs.push_back("assets/suits/" + suitToString(s) + ".png");
       }
       return suitDirs;
    }

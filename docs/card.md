@@ -35,3 +35,39 @@ The `Card` class is the main object in the project, to be constructed it uses th
 - Rank rank_;
 - std::vector<Suit> suit_;
 - std::string modifier_;
+
+The `modifier_` is where the Jokers will act, this is the "powers" that happen in the game.
+
+### The Methods
+!!! Note:
+	The methods appear in an order without importance.
+
+<!--esto es un template -->
+
+## 🧩 Attributes
+
+| Name | Type | Description |
+|------|------|-------------|
+| `_cards` | `list[Card]` | Internal list of cards currently in the deck |
+| `_discard_pile` | `list[Card]` | Tracks discarded cards |
+
+---
+
+## ⚙️ Constructors
+
+| Signature | Description |
+|------------|-------------|
+| `Deck()` | Creates and initializes a full deck of 52 cards. |
+
+---
+
+## 🧮 Methods
+
+### ▶️ `shuffle() -> None`
+**Description:**  
+Randomly shuffles the deck.
+
+**Example:**
+```python
+deck = Deck()
+deck.shuffle()

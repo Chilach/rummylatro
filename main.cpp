@@ -4,10 +4,6 @@
 #include "Deck.h"
 #include <iostream>
 
-/*
-- Implementar la parte gráfica de la carta
- */
-
 using namespace sf;
 
 std::unique_ptr<sf::RenderTexture> RenderCard(Card& card, float posX, float posY) {

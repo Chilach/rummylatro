@@ -1,12 +1,13 @@
 #include <SFML/Graphics.hpp>
-#include "src/Player.h"
-#include "src/Card.h"
-#include "src/Deck.h"
+#include "Player.h"
+#include "Card.h"
+#include "Deck.h"
 #include <iostream>
 
 /*
 - Implementar la parte gráfica de la carta
  */
+
 using namespace sf;
 
 std::unique_ptr<sf::RenderTexture> RenderCard(Card& card, float posX, float posY) {
@@ -21,7 +22,7 @@ std::unique_ptr<sf::RenderTexture> RenderCard(Card& card, float posX, float posY
     Sprite cardSprite(cardTex);
     cardSprite.setScale(8.f, 8.f);
     cardSprite.setPosition(posX, posY); // optional: place the baked card origin
-    //cardSprite.setColor(suitToColor(card.getFirstSuit()));
+   //cardSprite.setColor(suitToColor(card.getFirstSuit()));
 
     Sprite rankSprite(rankTex);
     rankSprite.setScale(8.f, 8.f);
@@ -56,14 +57,25 @@ std::unique_ptr<sf::RenderTexture> RenderCard(Card& card, float posX, float posY
     renderTex->draw(rankSprite);
 
     // draw suit sprites positioned relative to the card
-    for (std::size_t i = 0; i < suitSprites.size(); ++i) {
-        Sprite &s = suitSprites[i];
-        s.setPosition(10.f + static_cast<float>(i) * 60.f, 80.f); // adjust as needed
-        // black for first, red for others (example)
-        s.setColor((i > 0) ? Color(255,0,0) : Color(0,0,0));
+    for (auto &cardsuits : card.getSuits()){
+        Sprite &s = suitSprites[static_cast<std::size_t>(cardsuits)];
+        // Example positions; adjust as needed
+        if (cardsuits == Suit::SPADES) {
+            s.setPosition(10.f, 80.f);
+            s.setColor(suitToColor(cardsuits));
+        } else if (cardsuits == Suit::HEARTS) {
+            s.setPosition(70.f, 80.f);
+            s.setColor(suitToColor(cardsuits));
+        } else if (cardsuits == Suit::DIAMONDS) {
+            s.setPosition(130.f, 80.f);
+            s.setColor(suitToColor(cardsuits));
+        } else if (cardsuits == Suit::CLUBS) {
+            s.setPosition(190.f, 80.f);
+            s.setColor(suitToColor(cardsuits));
+        }
         renderTex->draw(s);
-    }
 
+    }
     // finalize the render texture — this makes its texture usable via getTexture()
     renderTex->display();
 

@@ -13,15 +13,13 @@
 ## 📝 To-Do
 
 A. Sobre la lógica del juego
-- [ ] 
-- [ ] Crear un tablero donde las cartas cada jugador las tenga guardadas
-- [x] 
-- [ ] 
-- [ ] 
+- [X] Tener el display para las cartas.
+- [ ] Organizar el código (no al nivel estricto de SOLID) en un sentido práctico.
+- [X] Crear un tablero donde las cartas cada jugador las tenga guardadas.
 
 B. Sobre el apartado gráfico
-- [ ] Hacer display de carta.
-- [ ] Hacer la clase del apartado gráfico de la carta.
+- [X] Hacer display de carta.
+- [X] Hacer la clase del apartado gráfico de la carta.
 - [ ] Hacer las letras (rank) (2, 3, ..., K)
-- [ ] Hacer los suits (corazones, diamantes, tréboles)
+- [X] Hacer los suits (corazones, diamantes, tréboles y espadas)
 

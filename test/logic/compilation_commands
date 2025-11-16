@@ -1,0 +1,7 @@
+
+########## #
+#test.cpp es el nombre del archivo a compilar
+########## #
+
+cd /home/julian/juli/sem8/rummy-latro/rummylatro
+g++ -Isrc test.cpp -o main -lsfml-graphics -lsfml-window -lsfml-system

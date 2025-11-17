@@ -25,3 +25,20 @@ target_include_directories(CardGame PRIVATE include/)
 
 # Link SFML libraries
 target_link_libraries(CardGame sfml-graphics sfml-window sfml-system)
+
+# ============================================================================
+# COPY ASSETS FOLDER TO BUILD DIRECTORY
+# ============================================================================
+# This tells CMake to copy the entire assets/ folder into the build directory
+add_custom_command(TARGET CardGame POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    ${CMAKE_SOURCE_DIR}/assets
+    ${CMAKE_BINARY_DIR}/assets
+    COMMENT "Copying assets folder to build directory"
+)
+
+# ============================================================================
+# OPTIONAL: Print the working directory (for debugging)
+# ============================================================================
+# Uncomment this line if you want to see where files are being looked for
+# add_compile_definitions(DEBUG_ASSET_PATH="${CMAKE_BINARY_DIR}/assets")

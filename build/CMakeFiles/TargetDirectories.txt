@@ -1,0 +1,3 @@
+/home/julian/juli/sem8/rummy-latro/rummylatro/build/CMakeFiles/CardGame.dir
+/home/julian/juli/sem8/rummy-latro/rummylatro/build/CMakeFiles/edit_cache.dir
+/home/julian/juli/sem8/rummy-latro/rummylatro/build/CMakeFiles/rebuild_cache.dir

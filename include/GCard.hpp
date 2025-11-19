@@ -1,19 +1,26 @@
 #pragma once
 
-#include "Card.h"
+#include "Card.hpp"
 
 class GCard{
 private:
-   Card card_;
+   Card& card_;
+   float scale_;
    float posX_;
    float posY_;
 
 public:
-   GCard(Card card, float posX, float posY) : card_(card), posX_(posX),  posY_(posY) {}
+   GCard(Card& card, float scale, float posX, float posY) : card_(card), scale_(scale), posX_(posX),  posY_(posY) {}
+   //GCard(Card& card): card_(card) {}
 
-   ~GCard();
+   //~GCard();
+   
+   //POSITION GETTERS
+   float getPosX() { return posX_; }
+   float getPosY() { return posY_; }
+   float getScale(){ return scale_; }
 
-   //directorio de la carta
+   //GETTERS FOR GRAPHIC PART OF THE CARD
    std::string getCardTextureDir() const {
       return "assets/cards/card.png";
    }
@@ -29,4 +36,32 @@ public:
       }
       return suitDirs;
    }
+
+   sf::Texture loadCardTexture(){
+   sf::Texture cardTex;
+    if (!cardTex.loadFromFile(card_.getCardTextureDir())){
+        std::cerr << "Failed to load textures\n";
+    }
+    return cardTex;
+}
+
+sf::Texture loadRankTexture(){
+   sf::Texture rankTex;
+    if ( !rankTex.loadFromFile( card_.getRankTextureDir() ) ){
+        std::cerr << "Failed to load textures\n";
+    }
+    return rankTex;
+}
+
+std::vector<sf::Texture> loadSuitTextures(){
+    std::vector<sf::Texture> suitTextures;
+    for (const auto &dir : card_.getSuitTextureDirs()){
+       sf::Texture suitTex;
+        if (!suitTex.loadFromFile(dir)){
+            std::cerr << "Failed to load textures\n";
+        }
+        suitTextures.push_back(suitTex);
+    }
+    return suitTextures;
+}
 };

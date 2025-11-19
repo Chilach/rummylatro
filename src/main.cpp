@@ -1,28 +1,31 @@
 #include <SFML/Graphics.hpp>
 #include "Player.hpp"
+#include "GCard.hpp"
 #include "Card.hpp"
 #include "Deck.hpp"
 #include <iostream>
 
 using namespace sf;
 
-std::unique_ptr<sf::RenderTexture> RenderCard(Card& card, float posX, float posY) {
+std::unique_ptr<sf::RenderTexture> RenderCard(Card& card, float scale, float posX, float posY) {
 
     // Load textures (these are local; that's OK)
     card.orderGLSuits();
-    Texture cardTex = loadCardTexture(card);
-    Texture rankTex = loadRankTexture(card);
-	std::vector<Texture> suitTextures = loadSuitTextures(card);
+    GCard gCard = GCard(card, scale, posX, posY);
+    float myscale = gCard.getScale();
+    Texture cardTex = gCard.loadCardTexture();
+    Texture rankTex = gCard.loadRankTexture();
+	std::vector<Texture> suitTextures = gCard.loadSuitTextures();
 
     // Create sprites from those textures
     Sprite cardSprite(cardTex);
     cardSprite.setScale(8.f, 8.f);
-    cardSprite.setPosition(posX, posY); // optional: place the baked card origin
+    cardSprite.setPosition(gCard.getPosX(), gCard.getPosY()); // optional: place the baked card origin
    //cardSprite.setColor(suitToColor(card.getFirstSuit()));
 
     Sprite rankSprite(rankTex);
     rankSprite.setScale(8.f, 8.f);
-    rankSprite.setPosition(posX + 10.f, posY + 10.f);
+    rankSprite.setPosition(gCard.getPosX() + 20.f, gCard.getPosY() + 20.f);
     rankSprite.setColor(suitToColor(card.getFirstSuit()));
     std::vector<Sprite> suitSprites;
     suitSprites.reserve(suitTextures.size());
@@ -49,7 +52,6 @@ std::unique_ptr<sf::RenderTexture> RenderCard(Card& card, float posX, float posY
     renderTex->draw(cardSprite);
 
     // draw rank on top (adjusted to local coords)
-    rankSprite.setPosition(10.f, 10.f);
     renderTex->draw(rankSprite);
 
     // draw suit sprites positioned relative to the card

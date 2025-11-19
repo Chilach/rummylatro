@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
-#include "Player.h"
-#include "Card.h"
-#include "Deck.h"
+#include "Player.hpp"
+#include "Card.hpp"
+#include "Deck.hpp"
 #include <iostream>
 
 using namespace sf;

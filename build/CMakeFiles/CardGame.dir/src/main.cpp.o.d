@@ -230,8 +230,8 @@ CMakeFiles/CardGame.dir/src/main.cpp.o: \
  /usr/include/SFML/Graphics/Sprite.hpp \
  /usr/include/SFML/Graphics/Text.hpp \
  /usr/include/SFML/Graphics/VertexBuffer.hpp \
- /home/julian/juli/sem8/rummy-latro/rummylatro/include/Player.h \
- /home/julian/juli/sem8/rummy-latro/rummylatro/include/Card.h \
+ /home/julian/juli/sem8/rummy-latro/rummylatro/include/Player.hpp \
+ /home/julian/juli/sem8/rummy-latro/rummylatro/include/Card.hpp \
  /usr/include/c++/12/iostream /usr/include/c++/12/istream \
  /usr/include/c++/12/bits/istream.tcc /usr/include/c++/12/memory \
  /usr/include/c++/12/bits/stl_raw_storage_iter.h \
@@ -274,4 +274,4 @@ CMakeFiles/CardGame.dir/src/main.cpp.o: \
  /usr/include/c++/12/bits/random.tcc /usr/include/c++/12/numeric \
  /usr/include/c++/12/bits/stl_numeric.h \
  /usr/include/c++/12/pstl/glue_numeric_defs.h \
- /home/julian/juli/sem8/rummy-latro/rummylatro/include/Deck.h
+ /home/julian/juli/sem8/rummy-latro/rummylatro/include/Deck.hpp

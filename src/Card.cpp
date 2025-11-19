@@ -1,4 +1,4 @@
-#include "Card.h"
+#include "Card.hpp"
 
 sf::Color hexColor(unsigned int hex, uint8_t alpha) {
     return sf::Color(

@@ -163,13 +163,3 @@ public:
     //swap(a.isJoker_, b.isJoker_);
 }
 };
-
-//---------------------------------------------------------------
-//---------------------------------------------------------------
-//estas funciones las debemos acomodar dentro de la clase Card
-//---------------------------------------------------------------
-//---------------------------------------------------------------
-
-std::vector<sf::Texture> loadSuitTextures(Card& card);
-sf::Texture loadCardTexture(Card card);
-sf::Texture loadRankTexture(Card card);

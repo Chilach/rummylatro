@@ -16,9 +16,9 @@ public:
    //~GCard();
    
    //POSITION GETTERS
-   float getPosX() { return posX_; }
-   float getPosY() { return posY_; }
-   float getScale(){ return scale_; }
+   float& getPosX() { return posX_; }
+   float& getPosY() { return posY_; }
+   float& getScale(){ return scale_; }
 
    //GETTERS FOR GRAPHIC PART OF THE CARD
    std::string getCardTextureDir() const {
@@ -64,4 +64,24 @@ std::vector<sf::Texture> loadSuitTextures(){
     }
     return suitTextures;
 }
+
+//sf::Sprite loadCardSprite(sf::Texture cardTex){
+//sf::Sprite loadCardSprite(){ 
+//   sf::Texture cardTex = loadCardTexture();
+//   //unsigned int width  = cardTex.getSize().x * scale_;//*8u
+//   //unsigned int height = cardTex.getSize().y * scale_;//*8u
+//    // Create sprites from those textures
+//    sf::Sprite cardSprite(cardTex);
+//    cardSprite.setScale(scale_, scale_);
+//    cardSprite.setPosition(posX_, posY_); // optional: place the baked card origin
+//    //cardSprite.setColor(suitToColor(card.getFirstSuit()));
+//   
+//   return cardSprite;
+//}
+//std::vector<unsigned int> cardSize() {
+//    unsigned int width  = cardTex.getSize().x * scale_;
+//    unsigned int height = cardTex.getSize().y * scale_;
+//    
+//    return std::vector<unsigned int> {width, height};
+//}
 };

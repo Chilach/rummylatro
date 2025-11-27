@@ -5,28 +5,6 @@
 #include "Deck.hpp"
 #include <iostream>
 
-//NOW LETS MAKE THE FUNCTION I NEED TO RENDER THE DIFFERENT TYPES OF POSSIBLE LOOKS ON THE Card
-    // draw suit sprites positioned relative to the card
-//void drawCard(){
-//    for (auto &cardsuits : card.getSuits()){
-//        Sprite &s = suitSprites[static_cast<std::size_t>(cardsuits)];
-//        // Example positions; adjust as needed
-//        if (cardsuits == Suit::SPADES) {
-//            s.setPosition(10.f, 80.f);
-//            s.setColor(suitToColor(cardsuits));
-//        } else if (cardsuits == Suit::HEARTS) {
-//            s.setPosition(70.f, 80.f);
-//            s.setColor(suitToColor(cardsuits));
-//        } else if (cardsuits == Suit::DIAMONDS) {
-//            s.setPosition(130.f, 80.f);
-//            s.setColor(suitToColor(cardsuits));
-//        } else if (cardsuits == Suit::CLUBS) {
-//            s.setPosition(190.f, 80.f);
-//            s.setColor(suitToColor(cardsuits));
-//        }
-//        renderTex->draw(s);
-//}
-
 using namespace sf;
 
 std::unique_ptr<sf::RenderTexture> RenderCard(Card& card, float scale, float posX, float posY) {
@@ -49,6 +27,7 @@ std::unique_ptr<sf::RenderTexture> RenderCard(Card& card, float scale, float pos
     rankSprite.setScale(myscale, myscale);
     rankSprite.setPosition(gCard.getPosX() + 20.f, gCard.getPosY() + 20.f);
     rankSprite.setColor(suitToColor(card.getFirstSuit()));
+
     std::vector<Sprite> suitSprites;
     suitSprites.reserve(suitTextures.size());
     for (const auto &tex : suitTextures) {
@@ -105,6 +84,7 @@ std::unique_ptr<sf::RenderTexture> RenderCard(Card& card, float scale, float pos
 
 int main() {
     RenderWindow window(VideoMode(800, 600), "Composited Card");
+    //Este es un poco de texto de prueba para mostrar lo linda que es mi fuenteikj  
 
     Card c1({Suit::DIAMONDS, Suit::SPADES, Suit::CLUBS, Suit::HEARTS}, Rank::ACE, {Cmod::Wild});
 

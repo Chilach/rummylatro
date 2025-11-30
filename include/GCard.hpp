@@ -9,11 +9,69 @@ private:
    float posX_;
    float posY_;
 
+   // These persist as long as the GCard object exists
+   sf::Texture cardTexture_;
+   sf::Texture rankTexture_;
+   std::vector<sf::Texture> suitTextures_;
+
 public:
-   GCard(Card& card, float scale, float posX, float posY) : card_(card), scale_(scale), posX_(posX),  posY_(posY) {}
+   GCard(Card& card, float scale, float posX, float posY) : card_(card), scale_(scale), posX_(posX),  posY_(posY) {
+
+      loadAllTextures();
+   }
    //GCard(Card& card): card_(card) {}
 
    //~GCard();
+   //LOAD ALL THE TEXTURES
+   void loadAllTextures() {
+       // Load card texture
+       if (!cardTexture_.loadFromFile(getCardTextureDir())) {
+           std::cerr << "❌ Failed to load card texture\n";
+       } else {
+           std::cout << "✅ Card texture loaded\n";
+       }
+       
+       // Load rank texture
+       if (!rankTexture_.loadFromFile(getRankTextureDir())) {
+           std::cerr << "❌ Failed to load rank texture\n";
+       } else {
+           std::cout << "✅ Rank texture loaded\n";
+       }
+       
+       // Load suit textures
+       for (const auto &dir : getSuitTextureDirs()) {
+           sf::Texture suitTex;
+           if (!suitTex.loadFromFile(dir)) {
+               std::cerr << "❌ Failed to load suit texture: " << dir << "\n";
+           } else {
+               std::cout << "✅ Suit texture loaded: " << dir << "\n";
+           }
+           suitTextures_.push_back(suitTex);
+       }
+   }
+
+   float getCardTextureSizeX() const {
+      return  cardTexture_.getSize().x;
+   }
+
+   float getCardTextureSizeY() const{
+      return cardTexture_.getSize().y;
+   }
+
+sf::Sprite getCardSprite() {
+   sf::Sprite sprite(cardTexture_);  // Use member texture (stays alive)
+   sprite.setScale(scale_, scale_);
+   sprite.setPosition(posX_, posY_);
+   return sprite;
+   }
+
+sf:: Sprite getRankSprite(){
+   sf::Sprite sprite(rankTexture_);
+   sprite.setScale(scale_,scale_);
+   sprite.setPosition(posX_ + 20.f, posY_ + 20.f);
+   sprite.setColor(suitToColor(card_.getFirstSuit()));
+   return sprite;
+}
    
    //POSITION GETTERS
    float& getPosX() { return posX_; }
@@ -37,10 +95,12 @@ public:
       return suitDirs;
    }
 
-   sf::Texture loadCardTexture(){
+sf::Texture loadCardTexture(){
    sf::Texture cardTex;
     if (!cardTex.loadFromFile(card_.getCardTextureDir())){
-        std::cerr << "Failed to load textures\n";
+        std::cerr << "❌ Failed to load card texture from: " << card_.getCardTextureDir() << std::endl;
+    } else {
+        std::cout << "✅ Successfully loaded card texture\n";
     }
     return cardTex;
 }
@@ -64,7 +124,19 @@ std::vector<sf::Texture> loadSuitTextures(){
     }
     return suitTextures;
 }
-
+   //
+   //cardSprite.setScale(myscale, myscale);
+   //cardSprite.setPosition(gCard.getPosX(), gCard.getPosY()); // optional: place the baked card origin
+   //
+   //cardSprite.setColor(suitToColor(card.getFirstSuit()));
+   //
+//sf::Sprite cardSprite(sf::Texture cardTex){
+//   //sf::Texture cardTex = loadCardTexture();
+//   sf::Sprite cardSprite(cardTex);
+//   cardSprite.setScale(scale_, scale_);
+//   cardSprite.setPosition(posX_, posY_);
+//   return cardSprite;
+//}
 //sf::Sprite loadCardSprite(sf::Texture cardTex){
 //sf::Sprite loadCardSprite(){ 
 //   sf::Texture cardTex = loadCardTexture();

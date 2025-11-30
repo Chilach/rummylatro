@@ -13,20 +13,11 @@ std::unique_ptr<sf::RenderTexture> RenderCard(Card& card, float scale, float pos
     card.orderGLSuits();
     GCard gCard = GCard(card, scale, posX, posY);
     float myscale = gCard.getScale();
-    Texture cardTex = gCard.loadCardTexture();
     Texture rankTex = gCard.loadRankTexture();
 	std::vector<Texture> suitTextures = gCard.loadSuitTextures();
 
-    // Create sprites from those textures
-    Sprite cardSprite(cardTex);
-    cardSprite.setScale(myscale, myscale);
-    cardSprite.setPosition(gCard.getPosX(), gCard.getPosY()); // optional: place the baked card origin
-   //cardSprite.setColor(suitToColor(card.getFirstSuit()));
-
-    Sprite rankSprite(rankTex);
-    rankSprite.setScale(myscale, myscale);
-    rankSprite.setPosition(gCard.getPosX() + 20.f, gCard.getPosY() + 20.f);
-    rankSprite.setColor(suitToColor(card.getFirstSuit()));
+    sf::Sprite cardSprite = gCard.getCardSprite();
+    sf::Sprite rankSprite = gCard.getRankSprite();
 
     std::vector<Sprite> suitSprites;
     suitSprites.reserve(suitTextures.size());
@@ -38,8 +29,8 @@ std::unique_ptr<sf::RenderTexture> RenderCard(Card& card, float scale, float pos
 
     // Create a render texture on the heap and return it via unique_ptr
     auto renderTex = std::make_unique<RenderTexture>();
-    unsigned int width  = cardTex.getSize().x * myscale;//*8u
-    unsigned int height = cardTex.getSize().y * myscale;//*8u
+    unsigned int width  = gCard.getCardTextureSizeX() * myscale;//*8u
+    unsigned int height = gCard.getCardTextureSizeY() * myscale;//*8u
     if (!renderTex->create(width, height)) {
         std::cerr << "Failed to create render texture\n";
         return nullptr; // indicate failure

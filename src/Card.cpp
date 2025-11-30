@@ -63,31 +63,3 @@ sf::Color suitToColor(Suit s){
       default: return myColors::WHITE;
    }
 };
-
-sf::Texture loadCardTexture(Card card){
-   sf::Texture cardTex;
-    if (!cardTex.loadFromFile(card.getCardTextureDir())){
-        std::cerr << "Failed to load textures\n";
-    }
-    return cardTex;
-}
-
-sf::Texture loadRankTexture(Card card){
-   sf::Texture rankTex;
-    if ( !rankTex.loadFromFile( card.getRankTextureDir() ) ){
-        std::cerr << "Failed to load textures\n";
-    }
-    return rankTex;
-}
-
-std::vector<sf::Texture> loadSuitTextures(Card& card){
-    std::vector<sf::Texture> suitTextures;
-    for (const auto &dir : card.getSuitTextureDirs()){
-       sf::Texture suitTex;
-        if (!suitTex.loadFromFile(dir)){
-            std::cerr << "Failed to load textures\n";
-        }
-        suitTextures.push_back(suitTex);
-    }
-    return suitTextures;
-}

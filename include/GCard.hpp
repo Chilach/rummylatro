@@ -72,6 +72,17 @@ sf:: Sprite getRankSprite(){
    sprite.setColor(suitToColor(card_.getFirstSuit()));
    return sprite;
 }
+
+std::vector<sf::Sprite> getSuitSprites(){
+    std::vector<sf::Sprite> suitSprites;
+    suitSprites.reserve(suitTextures_.size());
+    for (const auto &tex : suitTextures_) {
+         sf::Sprite s(tex);
+        s.setScale(scale_, scale_);
+        suitSprites.push_back(s);
+    }
+   return suitSprites;
+} 
    
    //POSITION GETTERS
    float& getPosX() { return posX_; }

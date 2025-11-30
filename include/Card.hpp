@@ -161,5 +161,5 @@ public:
     swap(a.suit_, b.suit_);
     //swap(a.cmod_, b.cmod_);
     //swap(a.isJoker_, b.isJoker_);
-}
+   }
 };

@@ -12,15 +12,14 @@ std::unique_ptr<sf::RenderTexture> RenderCard(Card& card, float scale, float pos
     // Load textures (these are local; that's OK)
     // without the orderGLSuits all what we have done is fucked, so we need to deal with that shit now
     //card.orderGLSuits();
-    GCard gCard = GCard(card, scale, posX, posY);
-    float myscale = gCard.getScale();
+    GCard gCard = GCard(card, scale, posX, posY); //inicializa la carta grafica
+    float myscale = gCard.getScale(); //crea una copia de la escala con la cual fue inicializada la carta
     //Texture rankTex = gCard.loadRankTexture();
-	std::vector<Texture> suitTextures = gCard.loadSuitTextures();
 
     //loading sprites
-    sf::Sprite cardSprite = gCard.getCardSprite();
-    sf::Sprite rankSprite = gCard.getRankSprite();
-    std::vector<Sprite> suitSprites = gCard.getSuitSprites();
+    sf::Sprite cardSprite = gCard.getCardSprite(); //crea los sprites de las carta a graficar
+    sf::Sprite rankSprite = gCard.getRankSprite();//crea los sprites del rank
+    std::vector<Sprite> suitSprites = gCard.getSuitSprites();//crea un vector con los sprites de las suits posibles
 
     // Create a render texture on the heap and return it via unique_ptr
     auto renderTex = std::make_unique<RenderTexture>();
@@ -58,14 +57,14 @@ std::unique_ptr<sf::RenderTexture> RenderCard(Card& card, float scale, float pos
             case Suit::SPADES:
                 s.setPosition(10.f, 10.f);
                 s.setColor(suitToColor(cardSuits));
-                //std::cout << "passed on spades" << std::endl;
+                std::cout << "passed on spades" << std::endl;
             case Suit::HEARTS:
                 s.setPosition(70.f, 80.f);
                 s.setColor(suitToColor(cardSuits));
             case Suit::DIAMONDS:
                 s.setPosition(130.f, 80.f);
                 s.setColor(suitToColor(cardSuits));
-                //std::cout << "pinta diamantes de amarillo" << std::endl;
+                std::cout << "pinta diamantes de amarillo" << std::endl;
             case Suit::CLUBS:
                 s.setPosition(190.f, 80.f);
                 s.setColor(suitToColor(cardSuits));
@@ -105,8 +104,8 @@ int main() {
     RenderWindow window(VideoMode(800, 600), "Composited Card");
     //Este es un poco de texto de prueba para mostrar lo linda que es mi fuenteikj  
 
-    //Card c1({Suit::DIAMONDS, Suit::SPADES, Suit::CLUBS, Suit::HEARTS}, Rank::ACE, {Cmod::Wild});
-    Card c1({Suit::DIAMONDS, Suit::SPADES}, Rank::ACE, {Cmod::Wild});
+    Card c1({Suit::DIAMONDS, Suit::SPADES, Suit::CLUBS, Suit::HEARTS}, Rank::ACE, {Cmod::Wild});
+    //Card c1({Suit::SPADES, Suit::DIAMONDS}, Rank::ACE, {Cmod::Wild});
 
     auto renderTex = RenderCard(c1, 8.f, 0.f, 0.f);
     sf::Sprite bakedCardSprite(renderTex->getTexture());

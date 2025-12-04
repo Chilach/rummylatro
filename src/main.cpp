@@ -11,7 +11,7 @@ std::unique_ptr<sf::RenderTexture> RenderCard(Card& card, float scale, float pos
 
     // Load textures (these are local; that's OK)
     // without the orderGLSuits all what we have done is fucked, so we need to deal with that shit now
-    //card.orderGLSuits();
+    card.orderGLSuits();
     GCard gCard = GCard(card, scale, posX, posY); //inicializa la carta grafica
     float myscale = gCard.getScale(); //crea una copia de la escala con la cual fue inicializada la carta
     //Texture rankTex = gCard.loadRankTexture();
@@ -37,7 +37,7 @@ std::unique_ptr<sf::RenderTexture> RenderCard(Card& card, float scale, float pos
     // If you want rank/suits positioned relative to the card top-left inside renderTex,
     // use positions without posX/posY, e.g. rank at (10,10), suit offsets below:
     renderTex->draw(cardSprite);
-
+    rankSprite.setColor( suitToColor( card.getSuits()[0] ) );
     renderTex->draw(rankSprite); // draw rank on top (adjusted to local coords)
     // now we have to do this the right way
     // draw suit sprites positioned relative to the card
@@ -51,26 +51,38 @@ std::unique_ptr<sf::RenderTexture> RenderCard(Card& card, float scale, float pos
     ARE INITIALIZED AS WE KNOW
     */
 
-    for(auto &cardSuits : card.getSuits()){
-        sf::Sprite s = gCard.getSuitSprites()[static_cast<std::size_t>(cardSuits)];
-        switch (cardSuits) {
-            case Suit::SPADES:
+    sf::Sprite s;
+    for(auto const &cardSuits : card.getSuits()){
+        int k = static_cast<std::size_t>(cardSuits);
+        switch (k) {
+            case 0:
+                s = suitSprites[0];
                 s.setPosition(10.f, 10.f);
                 s.setColor(suitToColor(cardSuits));
                 std::cout << "passed on spades" << std::endl;
-            case Suit::HEARTS:
+                break;
+            case 1:
+                s = suitSprites[1];
                 s.setPosition(70.f, 80.f);
                 s.setColor(suitToColor(cardSuits));
-            case Suit::DIAMONDS:
+                std::cout << "pinta el corazon" << std::endl;
+                break;
+            case 2:
+                s = suitSprites[2];
                 s.setPosition(130.f, 80.f);
                 s.setColor(suitToColor(cardSuits));
                 std::cout << "pinta diamantes de amarillo" << std::endl;
-            case Suit::CLUBS:
+                break;
+            case 3:
+                s = suitSprites[3];
                 s.setPosition(190.f, 80.f);
                 s.setColor(suitToColor(cardSuits));
-            case Suit::JOKERS:
+                break;
+            case 4:
+                s = suitSprites[4];
                 s.setPosition(0.f, 100.f);
                 s.setColor(suitToColor(cardSuits));
+                break;
         }
         renderTex->draw(s);
     }
@@ -104,8 +116,9 @@ int main() {
     RenderWindow window(VideoMode(800, 600), "Composited Card");
     //Este es un poco de texto de prueba para mostrar lo linda que es mi fuenteikj  
 
-    Card c1({Suit::DIAMONDS, Suit::SPADES, Suit::CLUBS, Suit::HEARTS}, Rank::ACE, {Cmod::Wild});
+    //Card c1({Suit::DIAMONDS, Suit::SPADES, Suit::CLUBS, Suit::HEARTS}, Rank::ACE, {Cmod::Wild});
     //Card c1({Suit::SPADES, Suit::DIAMONDS}, Rank::ACE, {Cmod::Wild});
+    Card c1({Suit::DIAMONDS, Suit::HEARTS}, Rank::ACE, {Cmod::Wild});
 
     auto renderTex = RenderCard(c1, 8.f, 0.f, 0.f);
     sf::Sprite bakedCardSprite(renderTex->getTexture());

@@ -8,5 +8,10 @@
   "directory": "/home/julian/juli/sem8/rummy-latro/rummylatro/build",
   "command": "/usr/bin/c++  -I/home/julian/juli/sem8/rummy-latro/rummylatro/include -std=gnu++17 -o CMakeFiles/CardGame.dir/src/Card.cpp.o -c /home/julian/juli/sem8/rummy-latro/rummylatro/src/Card.cpp",
   "file": "/home/julian/juli/sem8/rummy-latro/rummylatro/src/Card.cpp"
+},
+{
+  "directory": "/home/julian/juli/sem8/rummy-latro/rummylatro/build",
+  "command": "/usr/bin/c++  -I/home/julian/juli/sem8/rummy-latro/rummylatro/include -std=gnu++17 -o CMakeFiles/CardGame.dir/src/GCard.cpp.o -c /home/julian/juli/sem8/rummy-latro/rummylatro/src/GCard.cpp",
+  "file": "/home/julian/juli/sem8/rummy-latro/rummylatro/src/GCard.cpp"
 }
 ]

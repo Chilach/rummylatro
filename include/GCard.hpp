@@ -2,6 +2,8 @@
 
 #include "Card.hpp"
 
+std::unique_ptr<sf::RenderTexture> RenderCard(Card& card, float scale, float posX, float posY);
+
 class GCard{
 private:
    Card& card_;

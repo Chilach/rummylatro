@@ -48,7 +48,7 @@ namespace myColors {
     const sf::Color RED = hexColor(0xd70000);
     const sf::Color BLUE = hexColor(0x0087af);
     const sf::Color YELLOW = hexColor(0xffaf00);
-    const sf::Color MULTICOLOR = hexColor(0xffc0cb);
+    const sf::Color MULTICOLOR = hexColor(0x7d7d7d);
     const sf::Color GREEN = hexColor(0x00afaf);
     const sf::Color CREAM = hexColor(0xFFF5E1);
 }

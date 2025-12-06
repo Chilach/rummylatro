@@ -15,6 +15,7 @@ find_package(SFML 2.5 REQUIRED COMPONENTS graphics window system)
 set(SOURCES
     src/main.cpp
     src/Card.cpp
+    src/GCard.cpp
 )
 
 # Create executable from sources

@@ -153,6 +153,30 @@ src/Card.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CardGame.dir/build.make CMakeFiles/CardGame.dir/src/Card.cpp.s
 .PHONY : src/Card.cpp.s
 
+src/GCard.o: src/GCard.cpp.o
+.PHONY : src/GCard.o
+
+# target to build an object file
+src/GCard.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CardGame.dir/build.make CMakeFiles/CardGame.dir/src/GCard.cpp.o
+.PHONY : src/GCard.cpp.o
+
+src/GCard.i: src/GCard.cpp.i
+.PHONY : src/GCard.i
+
+# target to preprocess a source file
+src/GCard.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CardGame.dir/build.make CMakeFiles/CardGame.dir/src/GCard.cpp.i
+.PHONY : src/GCard.cpp.i
+
+src/GCard.s: src/GCard.cpp.s
+.PHONY : src/GCard.s
+
+# target to generate assembly for a file
+src/GCard.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CardGame.dir/build.make CMakeFiles/CardGame.dir/src/GCard.cpp.s
+.PHONY : src/GCard.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -189,6 +213,9 @@ help:
 	@echo "... src/Card.o"
 	@echo "... src/Card.i"
 	@echo "... src/Card.s"
+	@echo "... src/GCard.o"
+	@echo "... src/GCard.i"
+	@echo "... src/GCard.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

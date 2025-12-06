@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/CardGame.dir/src/main.cpp.o CMakeFiles/CardGame.dir/src/Card.cpp.o -o CardGame  /usr/lib/x86_64-linux-gnu/libsfml-graphics.so.2.5.1 /usr/lib/x86_64-linux-gnu/libsfml-window.so.2.5.1 /usr/lib/x86_64-linux-gnu/libsfml-system.so.2.5.1 
+/usr/bin/c++ CMakeFiles/CardGame.dir/src/main.cpp.o CMakeFiles/CardGame.dir/src/Card.cpp.o CMakeFiles/CardGame.dir/src/GCard.cpp.o -o CardGame  /usr/lib/x86_64-linux-gnu/libsfml-graphics.so.2.5.1 /usr/lib/x86_64-linux-gnu/libsfml-window.so.2.5.1 /usr/lib/x86_64-linux-gnu/libsfml-system.so.2.5.1 

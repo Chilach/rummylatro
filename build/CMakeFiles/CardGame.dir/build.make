@@ -97,22 +97,38 @@ CMakeFiles/CardGame.dir/src/Card.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CardGame.dir/src/Card.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/julian/juli/sem8/rummy-latro/rummylatro/src/Card.cpp -o CMakeFiles/CardGame.dir/src/Card.cpp.s
 
+CMakeFiles/CardGame.dir/src/GCard.cpp.o: CMakeFiles/CardGame.dir/flags.make
+CMakeFiles/CardGame.dir/src/GCard.cpp.o: /home/julian/juli/sem8/rummy-latro/rummylatro/src/GCard.cpp
+CMakeFiles/CardGame.dir/src/GCard.cpp.o: CMakeFiles/CardGame.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julian/juli/sem8/rummy-latro/rummylatro/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/CardGame.dir/src/GCard.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CardGame.dir/src/GCard.cpp.o -MF CMakeFiles/CardGame.dir/src/GCard.cpp.o.d -o CMakeFiles/CardGame.dir/src/GCard.cpp.o -c /home/julian/juli/sem8/rummy-latro/rummylatro/src/GCard.cpp
+
+CMakeFiles/CardGame.dir/src/GCard.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CardGame.dir/src/GCard.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/julian/juli/sem8/rummy-latro/rummylatro/src/GCard.cpp > CMakeFiles/CardGame.dir/src/GCard.cpp.i
+
+CMakeFiles/CardGame.dir/src/GCard.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CardGame.dir/src/GCard.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/julian/juli/sem8/rummy-latro/rummylatro/src/GCard.cpp -o CMakeFiles/CardGame.dir/src/GCard.cpp.s
+
 # Object files for target CardGame
 CardGame_OBJECTS = \
 "CMakeFiles/CardGame.dir/src/main.cpp.o" \
-"CMakeFiles/CardGame.dir/src/Card.cpp.o"
+"CMakeFiles/CardGame.dir/src/Card.cpp.o" \
+"CMakeFiles/CardGame.dir/src/GCard.cpp.o"
 
 # External object files for target CardGame
 CardGame_EXTERNAL_OBJECTS =
 
 CardGame: CMakeFiles/CardGame.dir/src/main.cpp.o
 CardGame: CMakeFiles/CardGame.dir/src/Card.cpp.o
+CardGame: CMakeFiles/CardGame.dir/src/GCard.cpp.o
 CardGame: CMakeFiles/CardGame.dir/build.make
 CardGame: /usr/lib/x86_64-linux-gnu/libsfml-graphics.so.2.5.1
 CardGame: /usr/lib/x86_64-linux-gnu/libsfml-window.so.2.5.1
 CardGame: /usr/lib/x86_64-linux-gnu/libsfml-system.so.2.5.1
 CardGame: CMakeFiles/CardGame.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/julian/juli/sem8/rummy-latro/rummylatro/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable CardGame"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/julian/juli/sem8/rummy-latro/rummylatro/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable CardGame"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/CardGame.dir/link.txt --verbose=$(VERBOSE)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Copying assets folder to build directory"
 	/usr/bin/cmake -E copy_directory /home/julian/juli/sem8/rummy-latro/rummylatro/assets /home/julian/juli/sem8/rummy-latro/rummylatro/build/assets

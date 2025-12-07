@@ -65,11 +65,12 @@ public:
 
         for (int i = 0; i < 2; ++i){
             for (int value = 1; value <= 13; ++value) {
-                myCards.push_back(Card({Suit::HEARTS}, static_cast<Rank>(value)));
+                myCards.push_back(Card({Suit::HEARTS}  , static_cast<Rank>(value)));
                 myCards.push_back(Card({Suit::DIAMONDS}, static_cast<Rank>(value)));
-                myCards.push_back(Card({Suit::CLUBS}, static_cast<Rank>(value)));
-                myCards.push_back(Card({Suit::SPADES}, static_cast<Rank>(value)));
+                myCards.push_back(Card({Suit::CLUBS}   , static_cast<Rank>(value)));
+                myCards.push_back(Card({Suit::SPADES}  , static_cast<Rank>(value)));
                 }
+            myCards.push_back(Card({Suit::JOKERS}, Rank::JOKER));
             myCards.push_back(Card({Suit::JOKERS}, Rank::JOKER));
             }
         Deck deck(myCards);

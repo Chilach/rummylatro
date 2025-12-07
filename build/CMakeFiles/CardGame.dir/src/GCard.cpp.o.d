@@ -1,8 +1,8 @@
 CMakeFiles/CardGame.dir/src/GCard.cpp.o: \
- /home/julian/juli/sem8/rummy-latro/rummylatro/src/GCard.cpp \
+ /home/julian/juli/programs/rummylatro/src/GCard.cpp \
  /usr/include/stdc-predef.h \
- /home/julian/juli/sem8/rummy-latro/rummylatro/include/GCard.hpp \
- /home/julian/juli/sem8/rummy-latro/rummylatro/include/Card.hpp \
+ /home/julian/juli/programs/rummylatro/include/GCard.hpp \
+ /home/julian/juli/programs/rummylatro/include/Card.hpp \
  /usr/include/c++/12/string \
  /usr/include/x86_64-linux-gnu/c++/12/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/12/bits/os_defines.h \

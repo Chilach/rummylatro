@@ -1,4 +1,4 @@
-# Install script for directory: /home/julian/juli/sem8/rummy-latro/rummylatro
+# Install script for directory: /home/julian/juli/programs/rummylatro
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/julian/juli/sem8/rummy-latro/rummylatro/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/julian/juli/programs/rummylatro/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -1,5 +1,5 @@
 CMakeFiles/CardGame.dir/src/main.cpp.o: \
- /home/julian/juli/sem8/rummy-latro/rummylatro/src/main.cpp \
+ /home/julian/juli/programs/rummylatro/src/main.cpp \
  /usr/include/stdc-predef.h /usr/include/SFML/Graphics.hpp \
  /usr/include/SFML/Window.hpp /usr/include/SFML/System.hpp \
  /usr/include/SFML/Config.hpp /usr/include/SFML/System/Clock.hpp \
@@ -230,8 +230,8 @@ CMakeFiles/CardGame.dir/src/main.cpp.o: \
  /usr/include/SFML/Graphics/Sprite.hpp \
  /usr/include/SFML/Graphics/Text.hpp \
  /usr/include/SFML/Graphics/VertexBuffer.hpp \
- /home/julian/juli/sem8/rummy-latro/rummylatro/include/Player.hpp \
- /home/julian/juli/sem8/rummy-latro/rummylatro/include/Card.hpp \
+ /home/julian/juli/programs/rummylatro/include/Player.hpp \
+ /home/julian/juli/programs/rummylatro/include/Card.hpp \
  /usr/include/c++/12/iostream /usr/include/c++/12/istream \
  /usr/include/c++/12/bits/istream.tcc /usr/include/c++/12/memory \
  /usr/include/c++/12/bits/stl_raw_storage_iter.h \
@@ -274,5 +274,5 @@ CMakeFiles/CardGame.dir/src/main.cpp.o: \
  /usr/include/c++/12/bits/random.tcc /usr/include/c++/12/numeric \
  /usr/include/c++/12/bits/stl_numeric.h \
  /usr/include/c++/12/pstl/glue_numeric_defs.h \
- /home/julian/juli/sem8/rummy-latro/rummylatro/include/Deck.hpp \
- /home/julian/juli/sem8/rummy-latro/rummylatro/include/GCard.hpp
+ /home/julian/juli/programs/rummylatro/include/Deck.hpp \
+ /home/julian/juli/programs/rummylatro/include/GCard.hpp

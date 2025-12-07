@@ -8,9 +8,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/julian/juli/sem8/rummy-latro/rummylatro/src/Card.cpp" "CMakeFiles/CardGame.dir/src/Card.cpp.o" "gcc" "CMakeFiles/CardGame.dir/src/Card.cpp.o.d"
-  "/home/julian/juli/sem8/rummy-latro/rummylatro/src/GCard.cpp" "CMakeFiles/CardGame.dir/src/GCard.cpp.o" "gcc" "CMakeFiles/CardGame.dir/src/GCard.cpp.o.d"
-  "/home/julian/juli/sem8/rummy-latro/rummylatro/src/main.cpp" "CMakeFiles/CardGame.dir/src/main.cpp.o" "gcc" "CMakeFiles/CardGame.dir/src/main.cpp.o.d"
+  "/home/julian/juli/programs/rummylatro/src/Card.cpp" "CMakeFiles/CardGame.dir/src/Card.cpp.o" "gcc" "CMakeFiles/CardGame.dir/src/Card.cpp.o.d"
+  "/home/julian/juli/programs/rummylatro/src/GCard.cpp" "CMakeFiles/CardGame.dir/src/GCard.cpp.o" "gcc" "CMakeFiles/CardGame.dir/src/GCard.cpp.o.d"
+  "/home/julian/juli/programs/rummylatro/src/main.cpp" "CMakeFiles/CardGame.dir/src/main.cpp.o" "gcc" "CMakeFiles/CardGame.dir/src/main.cpp.o.d"
   )
 
 # Targets to which this target links.

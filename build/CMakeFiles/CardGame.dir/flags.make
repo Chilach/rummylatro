@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/julian/juli/sem8/rummy-latro/rummylatro/include
+CXX_INCLUDES = -I/home/julian/juli/programs/rummylatro/include
 
 CXX_FLAGS = -std=gnu++17
 

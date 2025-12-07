@@ -8,10 +8,7 @@
 using namespace sf;
 
 int main() {
-    
     //ahora vamos a ver como hacer los Deck y los jugadores
-
-
     //NOW WE HAVE TO CREATE THE COMPLETE DECK 
     Deck tabledeck = Deck::createStandardDeck(); 
     //TABLEDECK.showDeck();

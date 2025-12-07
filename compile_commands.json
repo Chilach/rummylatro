@@ -1,11 +1,11 @@
 [
   {
-    "directory": "/home/julian/juli/sem8/rummy-latro/rummylatro",
+    "directory": "/home/julian/juli/programs/rummylatro",
     "command": "g++ -std=c++17 -Wall -Wextra -I./include -c src/Card.cpp -o src/Card.o",
     "file": "src/Card.cpp"
   },
   {
-    "directory": "/home/julian/juli/sem8/rummy-latro/rummylatro",
+    "directory": "/home/julian/juli/programs/rummylatro",
     "command": "g++ -std=c++17 -Wall -Wextra -I./include -c src/main.cpp -o src/main.o",
     "file": "src/main.cpp"
   }

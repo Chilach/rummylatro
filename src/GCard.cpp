@@ -1,6 +1,6 @@
 #include <GCard.hpp>
 
-std::unique_ptr<sf::RenderTexture> RenderCard(Card& card, float scale, float posX, float posY) {
+std::unique_ptr<sf::RenderTexture> renderCard(Card& card, float scale, float posX, float posY) {
 
     // Load textures (these are local; that's OK)
     // without the orderGLSuits all what we have done is fucked, so we need to deal with that shit now

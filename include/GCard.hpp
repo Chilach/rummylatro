@@ -2,7 +2,7 @@
 
 #include "Card.hpp"
 
-std::unique_ptr<sf::RenderTexture> RenderCard(Card& card, float scale, float posX, float posY);
+std::unique_ptr<sf::RenderTexture> renderCard(Card& card, float scale, float posX, float posY);
 
 class GCard{
 private:

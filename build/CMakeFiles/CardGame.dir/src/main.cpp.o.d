@@ -275,4 +275,5 @@ CMakeFiles/CardGame.dir/src/main.cpp.o: \
  /usr/include/c++/12/bits/stl_numeric.h \
  /usr/include/c++/12/pstl/glue_numeric_defs.h \
  /home/julian/juli/programs/rummylatro/include/Deck.hpp \
- /home/julian/juli/programs/rummylatro/include/GCard.hpp
+ /home/julian/juli/programs/rummylatro/include/GCard.hpp \
+ /home/julian/juli/programs/rummylatro/include/GRack.hpp

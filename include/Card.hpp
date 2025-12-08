@@ -69,18 +69,18 @@ private:
          std::cout << cmodToString(Cmod::None);
    }
 
+   public:
+   Card(std::vector<Suit> suit, Rank rank, std::vector<Cmod> modifier={Cmod::None}) : suit_(suit), rank_(rank),  modifier_(modifier) {}
+
+   int numSuits() const {
+      return suit_.size();
+   }
+
    void showCard() const {
       std::cout << rankToString(rank_);
       for(int i = 0; i < suit_.size(); ++i){
       std::cout  << " of " << suitToString(suit_[i]) << ", ";
       }
-   }
-
-public:
-   Card(std::vector<Suit> suit, Rank rank, std::vector<Cmod> modifier={Cmod::None}) : suit_(suit), rank_(rank),  modifier_(modifier) {}
-
-   int numSuits() const {
-      return suit_.size();
    }
    
    //directorio de la carta

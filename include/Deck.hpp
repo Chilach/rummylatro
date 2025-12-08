@@ -8,6 +8,7 @@
 const unsigned int seed = 12345; // the "run" seed
 
 class Deck {
+
 private:
     std::vector<Card> cards_;
 
@@ -18,6 +19,10 @@ public:
         for (const auto& card : cards_) {
             card.show();
         }
+    }
+
+    const std::vector<Card>& getCards() const {
+        return cards_;
     }
 
     void shuffleDeck() {
